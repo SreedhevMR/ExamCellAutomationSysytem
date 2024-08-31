@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def print_login(request):
     return render(request,'login.html')
+
+def choice_signup(request):
+    return render(request,'signup_choice.html')

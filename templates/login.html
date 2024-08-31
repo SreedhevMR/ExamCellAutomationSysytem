@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,117 +16,13 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            background-image: url('img/exam1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .logo {
-            position: absolute;
-            top: 20px; /* Adjust this value to change the vertical position */
-            left: 20px; /* Adjust this value to change the horizontal position */
-        }
-
-        .logo img {
-            width: 150px;
-        }
-
-        .top-left {
-            font-size: 24px;
-            font-weight: bold;
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #333;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .login-box {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .login-box h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .login-box label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .login-box input[type="text"],
-        .login-box input[type="password"],
-        .login-box select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .login-box button {
-            background-color: #333;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        .login-box button:hover {
-            background-color: #0b5fa3;
-        }
-
-        .login-box p {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        .login-box a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-box a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
     <!-- Start Logo -->
    
     <div class="logo">
-        {% load static %}
-       <img src="{% static 'img\ecas_logo_blue.png'}" alt="ECAS Logo"/>
+       <img src="{% static 'img/ecas_logo_blue.png' %}" alt="ECAS Logo"/>
     </div>
     <!-- End Logo -->
 
@@ -154,29 +51,10 @@
                 <button type="button" onclick="redirectToPage()">Login</button>
             </form>
             
-            <p>Don't have an account? <a href="signup_choice.html">Sign up</a></p>
+            <p>Don't have an account? <a href="{% url 'c_signup' %}">Sign up</a></p>
         </div>
     </div>
 
-    <script>
-        function redirectToPage() {
-            const role = document.getElementById('role').value;
-            let url = '';
-
-            if (role === 'admin') {
-                url = 'admin.html';
-            } else if (role === 'student') {
-                url = 'student.html';
-            } else if (role === 'teacher') {
-                url = 'teacher.html';
-            }
-
-            if (url) {
-                window.location.href = url;
-            } else {
-                alert('Please select a role to continue.');
-            }
-        }
-    </script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>

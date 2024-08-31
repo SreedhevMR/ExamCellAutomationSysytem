@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Signup</title>
+    <link rel="stylesheet" href="{% static 'css/choice.css' %}">
+</head>
+<body>
+    <!-- Start Logo -->
+    <div class="logo">
+        <img src="{% static 'img/ecas_logo_blue.png' %}" alt="ECAS Logo"/>
+    </div>
+    <!-- End Logo -->
+
+    <a href="{% url 'login' %}">
+        <img src="{% static 'img/arrow.png' %}" alt="Top Right Image" class="top-right-image">
+    </a>
+
+    <div class="choice-container">
+        <h2>Sign Up as a</h2>
+        <button onclick="window.location.href='student_signup.html'">Student</button>
+        <button onclick="window.location.href='teacher_signup.html'">Teacher</button>
+    </div>
+</body>
+</html>

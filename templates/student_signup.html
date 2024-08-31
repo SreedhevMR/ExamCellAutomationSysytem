@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>ECAS - Your Educational Companion</title>
+    
+    <link rel="icon" href="img/ecas_logo.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/student_signup.css' %}">
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="index.html"><img src="img/ecas_logo_white.png" alt="Logo"></a>
+    </div>
+    
+    <div class="container">
+        <div class="login-box">
+            <h2>SignUp</h2>
+            <form action="login.html" method="get">
+                <div class="form-section">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required maxlength="20">
+                    
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" required maxlength="30">
+                    
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required min="1" max="120">
+                    
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required maxlength="100"></textarea>
+                </div>
+
+                <div class="form-section">
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" maxlength="10">
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required maxlength="20">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <input type="submit" value="Signup">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

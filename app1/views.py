@@ -8,3 +8,5 @@ def print_login(request):
 
 def choice_signup(request):
     return render(request,'signup_choice.html')
+def student_signup(request):
+    return render(request,'student_signup.html')

@@ -1,82 +1,89 @@
-/* student_signup.css */
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5;
+/* Ensure the body takes full height and centers content */
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
-.logo {
-    text-align: center;
-    margin-top: 20px;
-}
-
+/* Center the container horizontally and vertically */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 40px); /* Adjust for top and bottom margin */
+    height: 100vh; /* Full viewport height */
 }
 
 .login-box {
-    background-color: #fff;
-    border-radius: 8px;
+    background: #f7f7f7;
+    padding: 30px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     width: 100%;
-    max-width: 500px;
+    max-width: 800px; /* Maximum width of the form */
 }
 
-h2 {
-    margin: 0 0 20px;
-    font-size: 24px;
+/* Center the title */
+.login-box h2 {
     text-align: center;
-    color: #333;
-}
-
-.form-section {
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #666;
+/* Style the form to use flexbox for better layout control */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
+/* Ensure form sections are evenly spaced and take up 45% width */
+.form-section {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Consistent label margin */
+label {
+    margin-bottom: 5px;
+}
+
+/* Style for inputs, selects, textareas */
 input[type="text"],
 input[type="number"],
 input[type="tel"],
 input[type="email"],
 input[type="password"],
 textarea,
-select {
-    width: 100%;
+select,
+input[type="file"] {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
+/* Styling for textarea to have a consistent height */
 textarea {
-    resize: vertical;
-    height: 100px;
+    resize: vertical; /* Allows vertical resizing only */
+    height: 100px; /* Sets a consistent height for textareas */
 }
 
+/* Styling for submit button */
 input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #333; /* Brown color */
+    color: white;
+    padding: 15px 20px;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
     width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+/* Hover effect for submit button */
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #1A76D1; /* Blue color on hover */
 }

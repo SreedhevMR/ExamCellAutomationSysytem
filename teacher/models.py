@@ -13,8 +13,8 @@ class Teacher_user(models.Model):
     ])
     mobile = models.CharField(max_length=10)
     email = models.EmailField(unique=True)
-    photo = models.ImageField(upload_to='photos/', blank=True, null=True, default="image")
+    photo = models.ImageField(upload_to='media/',null=True)
     user=models.OneToOneField(User,related_name='teacher_profile',on_delete=models.CASCADE)
-    
+
     def __str__(self):
-        return self.usernameo
+        return self.name

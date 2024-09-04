@@ -34,7 +34,7 @@
         <div class="login-box">
 
             <h1>Login</h1>
-            <form action="" method="get">
+            <form action="" method="post">
                 {% csrf_token %}
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required maxlength="20">
@@ -42,7 +42,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required minlength="6">
 
-                <button type="button" onclick="redirectToPage()">Login</button>
+                <button type="submit" >Login</button>
             </form>
             
             <p>Don't have an account? <a href="{% url 'signup_choice' %}">Sign up</a></p>

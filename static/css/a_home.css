@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures space distribution */
+    background-color: #333;
+    padding: 20px;
+}
+
+.navbar .logo img {
+    height: 80px; /* Increased the logo height */
+    margin-right: 20px;
+}
+
+.navbar .title {
+    color: white;
+    font-size: 1.5rem;
+    flex-grow: 1; /* Allows the title to take up available space */
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto; /* Align buttons to the right */
+}
+
+.navbar ul li {
+    margin-right: 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+
+.navbar ul li a:hover {
+    background-color: #333; /* Background color on hover */
+    color: #0b5fa3; /* Text color on hover */
+}
+
+/* Slider Section Styling */
+.slider {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer .social-icons {
+    margin: 10px 0;
+}
+
+footer .social-icons a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+footer .social-icons a:hover {
+    color: #0b5fa3; /* Change color on hover */
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.circular-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

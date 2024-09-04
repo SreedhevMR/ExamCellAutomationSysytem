@@ -1,13 +1,34 @@
 from django.shortcuts import render,redirect
 from student.models import Student_user
 from django.contrib.auth.models import User
-
+from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
 
 def index(request):
     return render(request,'index.html')
 
+def student_home(request):
+    return render(request,'student_home.html')
+
 def login_user(request):
+    if request.POST:
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            if user.is_staff==True:
+                login(request,user)
+                return redirect('t_home')
+            else:
+                login(request,user)
+            return redirect('s_home')
+        else:
+            messages.error(request,"Invalid user credentials")
     return render(request,'login.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('login_user')
 
 def sign_choice(request):
     return render(request,'signup_choice.html')

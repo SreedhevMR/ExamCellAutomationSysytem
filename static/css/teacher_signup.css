@@ -95,8 +95,8 @@ form {
 
 .top-right-image {
     position: absolute; /* Positioning the element absolutely */
-    top: 30px; /* Distance from the top */
-    right: 30px; /* Distance from the right */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
     width: 40px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
 }

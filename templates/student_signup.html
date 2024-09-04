@@ -7,7 +7,7 @@
     
     <title>ECAS - Your Educational Companion</title>
     
-    <link rel="icon" href="{% static 'img/ecas_logo.png' %}">
+    <link rel="icon" href="{% static 'img/meta1.jpg' %}">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
@@ -16,14 +16,25 @@
     <link rel="stylesheet" href="{% static 'css/student_signup.css' %}">
 </head>
 <body>
-    <!-- Logo -->
+    <!-- Start Logo -->
     <div class="logo">
+        <img src="{% static 'img/meta1.jpg' %}" alt="ECAS Logo"/>
     </div>
+    <!-- End Logo -->
     
+    <!-- Start arrow back option -->
+    <a href="{% url 'c_signup' %}">
+        <img src="{% static 'img/arrow1.png' %}" alt="Top Right Image" class="top-right-image">
+    </a>
+    <!-- End arrow back option -->
+
+    <!-- Display messages -->
+
     <div class="container">
         <div class="login-box">
             <h2>SignUp</h2>
-            <form action="login.html" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="form-section">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required maxlength="20">

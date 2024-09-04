@@ -11,7 +11,7 @@
     
     <title>ECAS - Your Educational Companion</title>
     
-    <link rel="icon" href="img/ecas_logo_blue.png">
+    <link rel="icon" href="{% static 'img/meta1.jpg' %}">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     <!-- Start Logo -->
    
     <div class="logo">
-       <img src="{% static 'img/ecas_logo_blue.png' %}" alt="ECAS Logo"/>
+       <img src="{% static 'img/meta1.jpg' %}" alt="ECAS Logo"/>
     </div>
     <!-- End Logo -->
 
@@ -32,21 +32,15 @@
     
     <div class="container">
         <div class="login-box">
+
             <h1>Login</h1>
-            <form action="index.html" method="get">
+            <form action="" method="get">
+                {% csrf_token %}
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required maxlength="20">
                 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required minlength="6">
-
-                <label for="role">Account type:</label>
-                <select id="role" name="role">
-                    <option value="">Select your role</option>
-                    <option value="admin">Admin</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                </select>
 
                 <button type="button" onclick="redirectToPage()">Login</button>
             </form>

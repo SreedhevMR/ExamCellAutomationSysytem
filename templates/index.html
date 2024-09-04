@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECAS-Your Educational Companion</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+
+    <!-- Start Header -->
+    <div class="header">
+        <!-- Start Logo -->
+        <div class="logo">
+            <img src="{% static 'img/meta1.jpg' %}" alt="ECAS Logo"/>
+        </div>
+        <!-- End Logo -->
+        <h1>ECAS</h1>
+        <p>Your Educational Companion</p>
+    </div>
+    <!-- End Header -->
+
+    <!-- Start Navbar -->
+    <div class="navbar">
+        <a href="{% url 'login_user' %}">Login</a>
+        <a href="#contact">Contact</a>
+        <a href="#services">Services</a>
+    </div>
+    <!-- End Navbar -->
+
+    <!-- Start New Section -->
+    <div class="new-section">
+        <p>
+           <b>ECAS is your go-to platform for streamlined exam management and educational support. Designed to simplify the complexities of academic assessments, ECAS offers a comprehensive suite of tools to facilitate the administration and evaluation of exams. Whether you’re an educator managing multiple test schedules or a student tracking your progress, ECAS provides an intuitive interface and robust features to enhance the examination experience. Our platform ensures that every aspect of exam management from scheduling and grading to analytics and feedback is efficiently handled, making it an indispensable resource for educational institutions.</b> 
+    </div>
+    <!-- End New Section -->
+
+    <!-- Start New Section -->
+    <div class="new-section">
+        <p>
+            <b>ECAS offers a range of powerful features designed to simplify and enhance the exam management process. Key features include seamless exam creation , Exam hall arrangements, Admit card generations, and real-time feedback for students. Our platform is built to support educators and administrators in delivering effective assessments while providing valuable insights to improve educational outcomes. With user-friendly interfaces and robust functionality, ECAS streamlines every aspect of exam management.
+        </b></p>
+    </div>
+    
+    <!-- End New Section -->
+
+    <!-- Section Image -->
+    <img src="{% static 'img/exam2.jpg' %}" alt="Section Image" class="section-image"/>
+
+    <!-- Start Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+    </div>
+    <!-- End Footer -->
+
+</body>
+</html>

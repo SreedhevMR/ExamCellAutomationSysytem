@@ -61,6 +61,19 @@ def student_signup(request):
         return redirect('login_user')
     return render(request,'student_signup.html')
 
+def student_admit_card(request):
+    return render(request, 'student_admit_card.html') 
 
+def stud_study_material(request):
+    return render(request, 'stud_study_material.html') 
+
+def student_exam(request):
+    return render(request, 'student_exam.html') 
+
+def student_result(request):
+    return render(request, 'student_result.html') 
+
+def student_seating_arrangement(request):
+    return render(request, 'student_seating_arrangement.html') 
 
 

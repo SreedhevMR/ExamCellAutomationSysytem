@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Study Materials</title>
+        <link rel="stylesheet" href="{% static 'css/stud_study_material.css' %}">
+    </head>
+    <body>
+    
+    <div class="container">
+        <h1>Study Materials</h1>
+
+        <form id="materialForm">
+            
+            <button type="submit" id="addButton">View Material</button>
+        </form>
+
+        <ul id="materialList">
+            <!-- Materials will be listed here -->
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('materialForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+            const material = document.getElementById('materialInput').value;
+            if (material) {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    ${material} 
+                    <button class="viewButton">View</button>
+                `;
+                document.getElementById('materialList').appendChild(listItem);
+                document.getElementById('materialInput').value = ''; // Clear the input field
+            }
+        });
+
+        document.getElementById('materialList').addEventListener('click', function(e) {
+            if (e.target && e.target.className === 'viewButton') {
+                const material = e.target.parentNode.firstChild.textContent.trim();
+                // Display the material directly or modify as needed
+                alert(`Viewing material: ${material}`);
+            }
+        });
+    </script>
+
+</body>
+</html>

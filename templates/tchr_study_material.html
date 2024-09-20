@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Study Materials</title>
+        <link rel="stylesheet" href="{% static 'css/stud_study_material.css' %}">
+    </head>
+    <body>
+    
+    <div class="container">
+        <h1>Add and Manage Study Materials</h1>
+
+        <form id="materialForm">
+            <input type="text" id="materialInput" placeholder="Enter study material" required>
+            <button type="submit" id="addButton">Add Material</button>
+        </form>
+
+        <ul id="materialList">
+            <!-- Materials will be listed here -->
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('materialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const material = document.getElementById('materialInput').value;
+            if (material) {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    ${material} 
+                    <button class="viewButton">View</button>
+                    <button class="deleteButton">Delete</button>
+                `;
+                document.getElementById('materialList').appendChild(listItem);
+                document.getElementById('materialInput').value = '';
+            }
+        });
+
+        document.getElementById('materialList').addEventListener('click', function(e) {
+            if (e.target && e.target.className === 'deleteButton') {
+                e.target.parentNode.remove();
+            }
+            if (e.target && e.target.className === 'viewButton') {
+                const material = e.target.parentNode.firstChild.textContent.trim();
+                // Assuming each material is a URL; you might need to adjust this logic
+                window.open(material, '_blank');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-{%load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,69 @@
     <title>ECAS - Your Educational Companion</title>
     
     <link rel="icon" href="{% static 'img/meta1.jpg' %}">
-    <link rel="stylesheet" href="{% static 'css/studenthome.css %}">
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+      }
+
+      header {
+          background-color: #333;
+          color: #fff;
+          padding: 20px 0;
+      }
+
+      .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          padding: 10px 0;
+      }
+
+      .navbar .logo img {
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          margin-left: 20px;
+      }
+
+      .navbar-menu {
+          list-style: none;
+          display: flex;
+          margin: 100px 20px 0 0; /* Move down (10px margin-top) and align right with margin-right */
+          padding: 0;
+      }
+
+      .navbar-menu li {
+          margin-left: 20px;
+      }
+
+      .navbar-menu a {
+          text-decoration: none;
+          color: #fff;
+          font-size: 18px;
+          transition: color 0.3s ease;
+      }
+
+      .navbar-menu a:hover {
+          color: #b2a1a1;
+      }
+
+      main {
+          padding: 20px;
+          text-align: center;
+      }
+
+      .title {
+          flex-grow: 1;
+          text-align: center;
+          font-size: 24px;
+          font-weight: bold;
+          color: #fff;
+      }
+  </style>
 </head>
 <body>
     <header>
@@ -23,15 +85,16 @@
 
             <!-- Slider Sentence -->
             <div class="title">
-                ECAS - Your Educational Companion
+                <h2>ECAS <br>Your Educational Companion</h2>
             </div>
 
             <!-- Navigation Bar -->
             <ul class="navbar-menu">
-                <li><a href="#faculty">Study Materials</a></li>
-                <li><a href="#exam">Exam</a></li>
-                <li><a href="#">Result</a></li>
-                <li><a href="#arrangement">Seating Arrangement</a></li>
+                <li><a href="{% url 's_card' %}">Admit Card</a></li>
+                <li><a href="{% url 's_material' %}">Study Materials</a></li>
+                <li><a href="{% url 's_exam' %}">Exam</a></li>
+                <li><a href="{% url 's_result' %}">Result</a></li>
+                <li><a href="{% url 's_arrangement' %}">Seating Arrangement</a></li>
                 <li><a href="{% url 'logout_user' %}">Log Out</a></li>
             </ul>
         </div>

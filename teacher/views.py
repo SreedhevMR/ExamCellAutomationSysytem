@@ -32,3 +32,6 @@ def teacher_signup(request):
 
 def teacher_home(request):
     return render(request,'teacher_home.html')
+
+def tchr_study_material(request):
+    return render(request, 'tchr_study_material.html') 

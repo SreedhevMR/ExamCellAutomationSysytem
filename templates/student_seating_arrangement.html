@@ -1,25 +1,130 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seating Arrangement</title>
+    <title>Exam Seating Arrangement</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 20%;
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
         }
-
+        .container {
+            max-width: 1200px; /* Increase width to accommodate two sections */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex; /* Flexbox to create two columns */
+            justify-content: space-between; /* Space between two sections */
+        }
         h1 {
-            font-size: 48px;
+            text-align: center; /* Center the heading */
             color: #333;
+            margin-bottom: 20px;
+        }
+        .section {
+            width: 48%; /* Each section takes up about half of the container */
+        }
+        .bench {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .seat-long {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-    <h1>Seating Arrangement</h1>
+
+    <!-- Common Heading for Both Sections -->
+    <h1>Exam Seating Arrangement</h1>
+
+    <div class="container">
+        
+        <!-- Left Section -->
+        <div class="section">
+            <!-- Bench Rows with Seats -->
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 1</div>
+                    <div>Seat 2</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 3</div>
+                    <div>Seat 4</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 5</div>
+                    <div>Seat 6</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 7</div>
+                    <div>Seat 8</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 9</div>
+                    <div>Seat 10</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section (Identical Seating Arrangement) -->
+        <div class="section">
+            <!-- Bench Rows with Seats -->
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 11</div>
+                    <div>Seat 12</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 13</div>
+                    <div>Seat 14</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 15</div>
+                    <div>Seat 16</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 17</div>
+                    <div>Seat 18</div>
+                </div>
+            </div>
+            <div class="bench">
+                <div class="seat-long">
+                    <div>Seat 19</div>
+                    <div>Seat 20</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>

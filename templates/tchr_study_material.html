@@ -1,54 +1,129 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Study Materials</title>
-        <link rel="stylesheet" href="{% static 'css/stud_study_material.css' %}">
-    </head>
-    <body>
-    
-    <div class="container">
-        <h1>Add and Manage Study Materials</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        function addStudyMaterial(event) {
+            event.preventDefault(); // Prevent page reload
 
-        <form id="materialForm">
-            <input type="text" id="materialInput" placeholder="Enter study material" required>
-            <button type="submit" id="addButton">Add Material</button>
+            // Get the values from the form
+            const materialName = document.getElementById('material-name').value;
+            const subject = document.getElementById('subject').value;
+            const author = document.getElementById('author').value;
+            const dateUploaded = document.getElementById('date-uploaded').value;
+
+            // Create a new row and cells
+            const table = document.getElementById('study-material-table');
+            const newRow = table.insertRow();
+            const nameCell = newRow.insertCell(0);
+            const subjectCell = newRow.insertCell(1);
+            const authorCell = newRow.insertCell(2);
+            const dateCell = newRow.insertCell(3);
+            const downloadCell = newRow.insertCell(4);
+
+            // Fill cells with user input
+            nameCell.textContent = materialName;
+            subjectCell.textContent = subject;
+            authorCell.textContent = author;
+            dateCell.textContent = dateUploaded;
+            downloadCell.innerHTML = `<a href="#" class="button">Download</a>`;
+
+            // Clear the form
+            document.getElementById('material-form').reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Study Material</h1>
+        <form id="material-form" onsubmit="addStudyMaterial(event)">
+            <label for="material-name">Material Name:</label>
+            <input type="text" id="material-name" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+
+            <label for="date-uploaded">Date Uploaded:</label>
+            <input type="date" id="date-uploaded" required>
+
+            <button type="submit">Add Study Material</button>
         </form>
 
-        <ul id="materialList">
-            <!-- Materials will be listed here -->
-        </ul>
+        <h2>Study Material Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Subject</th>
+                    <th>Author</th>
+                    <th>Date Uploaded</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody id="study-material-table">
+                <!-- User input rows will be inserted here -->
+            </tbody>
+        </table>
     </div>
-
-    <script>
-        document.getElementById('materialForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const material = document.getElementById('materialInput').value;
-            if (material) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    ${material} 
-                    <button class="viewButton">View</button>
-                    <button class="deleteButton">Delete</button>
-                `;
-                document.getElementById('materialList').appendChild(listItem);
-                document.getElementById('materialInput').value = '';
-            }
-        });
-
-        document.getElementById('materialList').addEventListener('click', function(e) {
-            if (e.target && e.target.className === 'deleteButton') {
-                e.target.parentNode.remove();
-            }
-            if (e.target && e.target.className === 'viewButton') {
-                const material = e.target.parentNode.firstChild.textContent.trim();
-                // Assuming each material is a URL; you might need to adjust this logic
-                window.open(material, '_blank');
-            }
-        });
-    </script>
-
 </body>
 </html>

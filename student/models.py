@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Student_user(models.Model):
     name = models.CharField(max_length=20)
     age = models.PositiveIntegerField()
@@ -18,6 +19,21 @@ class Student_user(models.Model):
 
     def __str__(self):
         return self.name
+    
+    from django.db import models
+
+class Exam(models.Model):
+    name = models.CharField(max_length=100)
+
+class Subject(models.Model):
+    exam = models.ForeignKey(Exam, related_name='subjects', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=100)
+    date = models.DateField()
+
+    def __str__(self):
+        return self.name
+
     
 
 

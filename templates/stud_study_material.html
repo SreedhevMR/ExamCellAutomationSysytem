@@ -1,50 +1,72 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Study Materials</title>
-        <link rel="stylesheet" href="{% static 'css/stud_study_material.css' %}">
-    </head>
-    <body>
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
-        <h1>Study Materials</h1>
-
-        <form id="materialForm">
-            
-            <button type="submit" id="addButton">View Material</button>
-        </form>
-
-        <ul id="materialList">
-            <!-- Materials will be listed here -->
-        </ul>
+        <h1>Study Material</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Subject</th>
+                    <th>Author</th>
+                    <th>Date Uploaded</th>
+                    <th>Download Link</th>
+                </tr>
+            </thead>
+           
+    
     </div>
-
-    <script>
-        document.getElementById('materialForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form from submitting normally
-            const material = document.getElementById('materialInput').value;
-            if (material) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    ${material} 
-                    <button class="viewButton">View</button>
-                `;
-                document.getElementById('materialList').appendChild(listItem);
-                document.getElementById('materialInput').value = ''; // Clear the input field
-            }
-        });
-
-        document.getElementById('materialList').addEventListener('click', function(e) {
-            if (e.target && e.target.className === 'viewButton') {
-                const material = e.target.parentNode.firstChild.textContent.trim();
-                // Display the material directly or modify as needed
-                alert(`Viewing material: ${material}`);
-            }
-        });
-    </script>
-
 </body>
 </html>

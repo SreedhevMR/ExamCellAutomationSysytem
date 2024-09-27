@@ -18,3 +18,20 @@ class Teacher_user(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Exam(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name  # Original code, which works correctly
+        # Introduce a corruption
+        # return s  # Uncomment this line to simulate the error
+
+class Subject(models.Model):
+    exam = models.ForeignKey(Exam, related_name='subjects', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=100)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.name} ({self.code})"

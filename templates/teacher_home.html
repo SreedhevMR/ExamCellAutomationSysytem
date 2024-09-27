@@ -9,6 +9,41 @@
     
     <link rel="icon" href="{% static 'img/meta1.jpg' %}">
     <link rel="stylesheet" href="{% static 'css/studenthome.css' %}">
+    <style>
+        /* Add styles for dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,16 +63,17 @@
 
             <!-- Navigation Bar -->
             <ul class="navbar-menu">
-                <li><a href="#">Student</a></li>
-                <li><a href="#">Exam Hall</a></li>
-                <li><a href="#">Seating Arrangement</a></li>
-                <li><a href="#">Exam</a></li>
+                <li><a href="{% url 't_student' %}">Student</a></li>
+                <li><a href="{% url 't_exam_hall' %}">Exam Hall</a></li>
+                <li><a href="{% url 't_arrangement' %}">Seating Arrangement</a></li>
+                <li><a href="{% url 't_offexam' %}">Exam</a></li>
                 <li><a href="{% url 't_material' %}">Study Materials</a></li>
-                <li><a href="#">Result</a></li>
+                <li><a href="{% url 't_result' %}">Result</a></li>
                 <li><a href="{% url 'logout_user' %}">Log Out</a></li>
             </ul>
         </div>
     </header>
+
     <main>
         <h1>Welcome to ECAS</h1>
         <p>Your platform for educational materials, exams, and results.</p>

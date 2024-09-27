@@ -3,6 +3,7 @@ from student.models import Student_user
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
+from django.shortcuts import render
 
 def index(request):
     return render(request,'index.html')
@@ -67,8 +68,14 @@ def student_admit_card(request):
 def stud_study_material(request):
     return render(request, 'stud_study_material.html') 
 
+from django.shortcuts import render
+
 def student_exam(request):
-    return render(request, 'student_exam.html') 
+    from .models import Exam  # Import inside the function to avoid circular import
+
+    exams = Exam.objects.prefetch_related('subjects').all()  
+    return render(request, 'student_exam.html', {'exams': exams})
+
 
 def student_result(request):
     return render(request, 'student_result.html') 

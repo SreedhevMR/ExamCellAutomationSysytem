@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Exams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .edit-btn, .delete-btn {
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #007BFF;
+        }
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+        .delete-btn {
+            background-color: #DC3545;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+        .close {
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: darkred;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .add-question-btn {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .add-question-btn:hover {
+            background-color: #218838;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .add-exam-container {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .add-exam-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .add-exam-container button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .add-exam-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Edit Exams</h1>
+
+    <!-- Section to add a new exam -->
+    <div class="add-exam-container">
+        <h2>Add New Exam</h2>
+        <input type="text" id="newExamName" placeholder="Enter Exam Name">
+        <button onclick="addNewExam()">Add Exam</button>
+    </div>
+
+    <!-- Exams table -->
+    <table id="examTable">
+        <tr>
+            <th>Exam ID</th>
+            <th>Exam Name</th>
+            <th>Actions</th>
+        </tr>
+        <!-- Sample exam data -->
+        <tr id="examRow1">
+            <td>1</td>
+            <td>exam 1</td>
+            <td>
+                <button class="edit-btn" onclick="openModal('1')">Edit</button>
+                <button class="delete-btn" onclick="deleteExam('1')">Delete</button>
+            </td>
+        </tr>
+        <tr id="examRow2">
+            <td>2</td>
+            <td>exam 2</td>
+            <td>
+                <button class="edit-btn" onclick="openModal('2')">Edit</button>
+                <button class="delete-btn" onclick="deleteExam('2')">Delete</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Modal for Adding Questions -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('1')">&times;</span>
+            <h2>Add Questions for Mathematics 101</h2>
+            <form action="add_questions" method="post">
+                <div id="questions-container1">
+                    <div class="question">
+                        <label for="question">Question 1:</label>
+                        <input type="text" name="question[]" required>
+                    </div>
+                </div>
+                <button type="button" class="add-question-btn" onclick="addQuestion('1')">Add Another Question</button>
+                <br><br>
+                <button type="submit" class="submit-btn">Submit Questions</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('2')">&times;</span>
+            <h2>Add Questions for Physics 202</h2>
+            <form action="add_questions" method="post">
+                <div id="questions-container2">
+                    <div class="question">
+                        <label for="question">Question 1:</label>
+                        <input type="text" name="question[]" required>
+                    </div>
+                </div>
+                <button type="button" class="add-question-btn" onclick="addQuestion('2')">Add Another Question</button>
+                <br><br>
+                <button type="submit" class="submit-btn">Submit Questions</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Open modal function
+        function openModal(examId) {
+            document.getElementById('modal' + examId).style.display = 'block';
+        }
+
+        // Close modal function
+        function closeModal(examId) {
+            document.getElementById('modal' + examId).style.display = 'none';
+        }
+
+        // Add another question
+        function addQuestion(examId) {
+            var container = document.getElementById('questions-container' + examId);
+            var questionCount = container.getElementsByClassName('question').length + 1;
+            var newQuestion = `
+                <div class="question">
+                    <label for="question">Question ${questionCount}:</label>
+                    <input type="text" name="question[]" required>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newQuestion);
+        }
+
+        // Add new exam function
+        function addNewExam() {
+            var examName = document.getElementById("newExamName").value;
+            if (examName.trim() === "") {
+                alert("Please enter a valid exam name.");
+                return;
+            }
+            
+            var examTable = document.getElementById("examTable");
+            var rowCount = examTable.rows.length; // To get current row count (use as exam ID)
+            var newRow = examTable.insertRow(-1); // Insert new row at the end
+
+            var cell1 = newRow.insertCell(0); // Exam ID
+            var cell2 = newRow.insertCell(1); // Exam Name
+            var cell3 = newRow.insertCell(2); // Actions
+
+            cell1.innerHTML = rowCount; // Dynamic exam ID based on row count
+            cell2.innerHTML = examName;
+            cell3.innerHTML = `
+                <button class="edit-btn" onclick="openModal('${rowCount}')">Edit</button>
+                <button class="delete-btn" onclick="deleteExam('${rowCount}')">Delete</button>
+            `;
+
+            // Create a new modal dynamically for the new exam
+            var newModal = document.createElement('div');
+            newModal.id = 'modal' + rowCount;
+            newModal.classList.add('modal');
+            newModal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('${rowCount}')">&times;</span>
+                    <h2>Add Questions for ${examName}</h2>
+                    <form action="add_questions" method="post">
+                        <div id="questions-container${rowCount}">
+                            <div class="question">
+                                <label for="question">Question 1:</label>
+                                <input type="text" name="question[]" required>
+                            </div>
+                        </div>
+                        <button type="button" class="add-question-btn" onclick="addQuestion('${rowCount}')">Add Another Question</button>
+                        <br><br>
+                        <button type="submit" class="submit-btn">Submit Questions</button>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(newModal);
+
+            // Clear the input field
+            document.getElementById("newExamName").value = "";
+        }
+
+        // Delete exam function
+        function deleteExam(examId) {
+            var row = document.getElementById('examRow' + examId);
+            if (row) {
+                row.parentNode.removeChild(row);
+            }
+        }
+    </script>
+
+</body>
+</html>

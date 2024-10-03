@@ -3,7 +3,15 @@ from teacher.models import Teacher_user
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Exam, Subject  
+from .models import Exam, Subject 
+from django.shortcuts import render, redirect
+from .forms import StudyMaterialForm
+from .models import StudyMaterial 
+from .models import ExamName, ExamResult 
+from django.shortcuts import render, redirect
+from .forms import StudyMaterialForm  
+from .models import StudyMaterial
+
 
 def teacher_signup(request):
     if request.method == 'POST':
@@ -68,9 +76,46 @@ def teacher_offexam(request):
     return render(request, 'teacher_offline_exam.html', {'exams': exams})
 
 
-
 def tchr_study_material(request):
-    return render(request, 'tchr_study_material.html')
- 
+    if request.method == 'POST':
+        form = StudyMaterialForm(request.POST, request.FILES) 
+        if form.is_valid():
+            form.save()
+            return redirect('t_material') 
+    else:
+        form = StudyMaterialForm()
+
+    materials = StudyMaterial.objects.all()
+
+    return render(request, 'tchr_study_material.html', {'form': form, 'materials': materials})
+
+
 def teacher_result(request):
-    return render(request, 'teacher_result.html') 
+    # Fetch all exams for the dropdown
+    exams = ExamName.objects.all()
+
+    # Handle search query
+    search_query = request.GET.get('search', '')  # Get the search term from the URL
+
+    # If there's a search query, filter results by the student's name, and order by exam name and student name
+    if search_query:
+        results = ExamResult.objects.select_related('exam').filter(
+            student_name__icontains=search_query
+        ).order_by('exam__name', 'student_name')
+    else:
+        # If no search, show all results ordered by exam name and student name
+        results = ExamResult.objects.select_related('exam').all().order_by('exam__name', 'student_name')
+
+    if request.method == 'POST':
+        exam_id = request.POST.get('exam')
+        student_name = request.POST.get('student_name')
+        score = request.POST.get('score')
+        date = request.POST.get('date')
+
+        # Create a new exam result
+        ExamResult.objects.create(exam_id=exam_id, student_name=student_name, score=score, date=date)
+     
+
+    return render(request, 'teacher_result.html', {'results': results, 'exams': exams, 'search_query': search_query})
+
+

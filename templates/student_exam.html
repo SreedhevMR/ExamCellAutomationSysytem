@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Exam Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Timetable Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #e3f2fd; /* Light blue background */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #90caf9; /* Light blue borders */
+            text-align: left;
+        }
+
+        table th {
+            background-color: #2196f3; /* Primary color for headers */
+            color: white; /* White text for better contrast */
+        }
+
+        table tr:nth-child(even) {
+            background-color: #bbdefb; /* Slightly darker blue for even rows */
+        }
+
+        table tr:hover {
+            background-color: #90caf9; /* Hover effect on rows */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            ul li {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Offline Exams</h1>
+
+        <!-- Display the list of exams -->
+        <div>
+            <h2>List of Exams</h2>
+            {% if exams %}
+                <ul>
+                    {% for exam in exams %}
+                        <li>
+                            <strong>{{ exam.name }}</strong>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Code</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for subject in exam.subjects.all %}
+                                        <tr>
+                                            <td>{{ subject.name }}</td>
+                                            <td>{{ subject.code }}</td>
+                                            <td>{{ subject.date }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No exams found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

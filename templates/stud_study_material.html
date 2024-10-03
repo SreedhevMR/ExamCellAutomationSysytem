@@ -3,24 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Material</title>
+    <title>Study Material Submission</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
+            color: #333;
         }
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
+            max-width: 800px;
+            margin: 50px auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #444;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        select {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #555;
         }
         table {
             width: 100%;
@@ -28,33 +66,51 @@
             margin-top: 20px;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            padding: 12px 15px;
             text-align: left;
+            border: 1px solid #ddd;
         }
         th {
             background-color: #333;
             color: white;
+            font-size: 16px;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            text-align: center;
+        a {
+            color: #fff;
             text-decoration: none;
+        }
+        .download-btn {
+            padding: 8px 12px;
+            background-color: #007bff;
             border-radius: 5px;
-            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Study Material</h1>
+        <h2>Uploaded Study Materials</h2>
         <table>
             <thead>
                 <tr>
@@ -62,11 +118,21 @@
                     <th>Subject</th>
                     <th>Author</th>
                     <th>Date Uploaded</th>
-                    <th>Download Link</th>
+                    <th>Download</th>
                 </tr>
             </thead>
-           
-    
+            <tbody>
+                {% for material in materials %}
+                <tr>
+                    <td>{{ material.material_name }}</td>
+                    <td>{{ material.subject }}</td>
+                    <td>{{ material.author }}</td>
+                    <td>{{ material.date_uploaded }}</td>
+                    <td><a href="{{ material.pdf_file.url }}" class="download-btn">Download</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

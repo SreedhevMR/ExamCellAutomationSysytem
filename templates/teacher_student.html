@@ -63,40 +63,30 @@
             <th>Department</th>
             <th>Actions</th>
         </tr>
-        <!-- Sample student data -->
+        {% for student in students %}
         <tr>
-            <td>101</td>
-            <td>Vaishak C P</td>
-            <td>Vaishak@gmail.com</td>
-            <td>Computer Science</td>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.department }}</td>
             <td class="action-buttons">
-                <form action="accept_student" method="post">
-                    <input type="hidden" name="student_id" value="101">
+                <form action="{% url 'accept_student' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
                     <button type="submit" class="accept-btn">Accept</button>
                 </form>
-                <form action="reject_student" method="post">
-                    <input type="hidden" name="student_id" value="101">
+                <form action="{% url 'reject_student' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
                     <button type="submit" class="reject-btn">Reject</button>
                 </form>
             </td>
         </tr>
+        {% empty %}
         <tr>
-            <td>102</td>
-            <td>Simi Xavier</td>
-            <td>simi55@gmail.com</td>
-            <td>Mechanical Engineering</td>
-            <td class="action-buttons">
-                <form action="accept_student" method="post">
-                    <input type="hidden" name="student_id" value="102">
-                    <button type="submit" class="accept-btn">Accept</button>
-                </form>
-                <form action="reject_student" method="post">
-                    <input type="hidden" name="student_id" value="102">
-                    <button type="submit" class="reject-btn">Reject</button>
-                </form>
-            </td>
+            <td colspan="5">No registered students found.</td>
         </tr>
-        <!-- Add more rows as necessary -->
+        {% endfor %}
     </table>
 
 </body>

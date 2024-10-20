@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,33 +27,15 @@
         th {
             background-color: #f2f2f2;
         }
-        .accept-btn, .reject-btn {
-            padding: 8px 16px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-        .accept-btn {
-            background-color: #4CAF50;
-        }
-        .reject-btn {
-            background-color: #f44336;
-        }
-        .accept-btn:hover {
-            background-color: #45a049;
-        }
-        .reject-btn:hover {
-            background-color: #d32f2f;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
     </style>
 </head>
 <body>
-
+  <!-- Back Button -->
+  <div class="back-button">
+    <a href="{% url 't_home' %}">
+        <img src="{% static 'img/arrow1.png' %}" alt="Back to Home">
+    </a>
+</div>
     <h1>Registered Students</h1>
 
     <table>
@@ -61,7 +44,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Department</th>
-            <th>Actions</th>
         </tr>
         {% for student in students %}
         <tr>
@@ -69,22 +51,10 @@
             <td>{{ student.name }}</td>
             <td>{{ student.email }}</td>
             <td>{{ student.department }}</td>
-            <td class="action-buttons">
-                <form action="{% url 'accept_student' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="student_id" value="{{ student.id }}">
-                    <button type="submit" class="accept-btn">Accept</button>
-                </form>
-                <form action="{% url 'reject_student' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="student_id" value="{{ student.id }}">
-                    <button type="submit" class="reject-btn">Reject</button>
-                </form>
-            </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5">No registered students found.</td>
+            <td colspan="4">No registered students found.</td>
         </tr>
         {% endfor %}
     </table>

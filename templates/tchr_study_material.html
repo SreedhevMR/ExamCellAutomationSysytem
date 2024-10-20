@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,6 +111,12 @@
     </style>
 </head>
 <body>
+      <!-- Back Button -->
+      <div class="back-button">
+        <a href="{% url 't_home' %}">
+            <img src="{% static 'img/arrow1.png' %}" alt="Back to Home">
+        </a>
+    </div>
     <div class="container">
         <h1>Submit Study Material</h1>
         <form id="material-form" method="POST" enctype="multipart/form-data">

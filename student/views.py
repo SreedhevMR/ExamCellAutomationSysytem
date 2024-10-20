@@ -3,10 +3,10 @@ from student.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from teacher.models import Exam, Subject
+from teacher.models import *
 from teacher.forms import StudyMaterialForm 
 from teacher.models import StudyMaterial
-from teacher.models import ExamResult,Exam
+
 
 def index(request):
     return render(request, 'index.html')
@@ -20,7 +20,10 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            if user.is_staff:
+            if user.is_superuser:
+                login(request,user)
+                return redirect('admin_page')
+            elif user.is_staff:
                 login(request, user)
                 return redirect('t_home')
             else:
@@ -67,6 +70,14 @@ def student_signup(request):
     return render(request, 'student_signup.html')
 
 def student_admit_card(request):
+    student = models.ForeignKey(Student_user, on_delete=models.CASCADE)
+    exam = models.ForeignKey(ExamName, on_delete=models.CASCADE)
+    exam_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.student.name} - {self.exam.name}"
+
     return render(request, 'student_admit_card.html')
 
 def stud_study_material(request):
@@ -133,3 +144,8 @@ def student_result(request):
 
 def student_seating_arrangement(request):
     return render(request, 'student_seating_arrangement.html')
+
+
+
+
+

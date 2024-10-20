@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +25,16 @@
             text-align: center;
             color: #333;
             margin-bottom: 20px;
+        }
+        .back-button {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+        .back-button img {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
         }
         form {
             display: flex;
@@ -110,29 +121,36 @@
     </style>
 </head>
 <body>
-        <h2>Uploaded Study Materials</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Material Name</th>
-                    <th>Subject</th>
-                    <th>Author</th>
-                    <th>Date Uploaded</th>
-                    <th>Download</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for material in materials %}
-                <tr>
-                    <td>{{ material.material_name }}</td>
-                    <td>{{ material.subject }}</td>
-                    <td>{{ material.author }}</td>
-                    <td>{{ material.date_uploaded }}</td>
-                    <td><a href="{{ material.pdf_file.url }}" class="download-btn">Download</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="{% url 's_home' %}">
+            <img src="{% static 'img/arrow1.png' %}" alt="Back to Home">
+        </a>
     </div>
+
+    <h2>Uploaded Study Materials</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Material Name</th>
+                <th>Subject</th>
+                <th>Author</th>
+                <th>Date Uploaded</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in materials %}
+            <tr>
+                <td>{{ material.material_name }}</td>
+                <td>{{ material.subject }}</td>
+                <td>{{ material.author }}</td>
+                <td>{{ material.date_uploaded }}</td>
+                <td><a href="{{ material.pdf_file.url }}" class="download-btn">Download</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-
-
-
 class Teacher_user(models.Model):
     name = models.CharField(max_length=20)
     age = models.PositiveIntegerField()
@@ -23,11 +20,7 @@ class Teacher_user(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-
-
+    
 class Exam(models.Model):
     name = models.CharField(max_length=255)
     # other exam fields
@@ -44,10 +37,6 @@ class Subject(models.Model):
     def __str__(self):
         return f"{self.name} ({self.code})"
 
-    
-
-
-
 class StudyMaterial(models.Model):
     material_name = models.CharField(max_length=255)
     subject = models.CharField(max_length=255)
@@ -60,7 +49,6 @@ class StudyMaterial(models.Model):
 
     class Meta:
         db_table = 'teacher_studymaterial'  
-
 
 class ExamName(models.Model):
     name = models.CharField(max_length=100)

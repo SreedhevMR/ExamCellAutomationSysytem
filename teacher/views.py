@@ -11,6 +11,8 @@ from .models import ExamName, ExamResult
 from django.shortcuts import render, redirect
 from .forms import StudyMaterialForm  
 from .models import StudyMaterial
+from django.shortcuts import render, get_object_or_404
+from .models import Exam, Subject
 
 
 def teacher_signup(request):
@@ -44,8 +46,14 @@ def teacher_signup(request):
 def teacher_home(request):
     return render(request,'teacher_home.html')
 
+from django.shortcuts import render, redirect
+from student.models import Student_user  # Import your Student_user model
+# other imports...
+
 def teacher_student(request):
-    return render(request, 'teacher_student.html') 
+    students = Student_user.objects.all()  # Fetch all students
+    return render(request, 'teacher_student.html', {'students': students})
+
 
 def teacher_exam_hall(request):
     return render(request, 'teacher_exam_hall.html') 
@@ -55,9 +63,6 @@ def teacher_seating_arrangement(request):
 
 def teacher_exam(request):
      return render(request, 'teacher_exam.html') 
-
-from django.shortcuts import render, get_object_or_404
-from .models import Exam, Subject
 
 def teacher_offexam(request):
     exams = Exam.objects.prefetch_related('subjects').all()
@@ -75,7 +80,6 @@ def teacher_offexam(request):
 
     return render(request, 'teacher_offline_exam.html', {'exams': exams})
 
-
 def tchr_study_material(request):
     if request.method == 'POST':
         form = StudyMaterialForm(request.POST, request.FILES) 
@@ -88,7 +92,6 @@ def tchr_study_material(request):
     materials = StudyMaterial.objects.all()
 
     return render(request, 'tchr_study_material.html', {'form': form, 'materials': materials})
-
 
 def teacher_result(request):
     # Fetch all exams for the dropdown
